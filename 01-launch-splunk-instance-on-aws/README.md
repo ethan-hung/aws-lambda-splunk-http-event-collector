@@ -3,11 +3,10 @@
 2. Click "Launch Instance" and Type "splunk" in the search box and Choose "Splunk Enterprise" in "AWS Marketplace"
 ![](../images/1.4.jpg)
 3. Splunk EC2 Instance Detail Setting
-```
-Instance type : t2.micro
-Subnet : Public Subnet
-Storage : 20GB(GP2)
-Security Group : 
+* Instance type : t2.micro
+* Subnet : Public Subnet
+* Storage : 20GB(GP2)
+* Security Group : 
     TCP 22 : Your IP
     TCP 8000 : 0.0.0.0/0
     TCP 554 : 0.0.0.0/0
@@ -15,7 +14,6 @@ Security Group :
     TCP 9997 : 0.0.0.0/0
     TCP 443 : 0.0.0.0/0
     TCP 8088 : 0.0.0.0/0
-```
 ![](../images/1.10.jpg)
 4. wait Splunk Splunk Status is "running"
 ![](../images/1.11.jpg)
