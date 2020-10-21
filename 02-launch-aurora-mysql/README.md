@@ -1,13 +1,62 @@
-# AWS IAM Role
-1. AWS console -> Services -> IAM
-2. Click "Roles"
-3. Click "Create Role"
-4. Choose "AWS Service"
-5. Click "Lambda"
-6. Click "Next:Permissions"
-![](../images/02-01.jpg)
-7. Select Policy "AWSLambdaVPCAccessExecutionRole"
-8. Click "Next:Tags"
-![](../images/02-02.jpg)
-9. Input Role name "aws-lambda-service-role"
-10. Click "Create role"
+# Launch Aurora MySQL
+1. Enter RDS Console
+![](../images/2.2.jpg)
+2. Click "Parameter groups" and Click "Create parameter group"
+![](../images/2.3.jpg)
+3. Choose Parameter group detail
+* Parameter group family : aurora-mysql5.7
+* Type : DB Cluster Parameter Group
+* Group name : <your group name>
+![](../images/2.4.jpg)
+
+
+
+
+
+1. Splunk EC2 Instance Detail Setting
+* Instance type : t2.micro
+* Subnet : Public Subnet
+* Storage : 20GB(GP2)
+* Security Group : 
+
+| TCP/UDP | Port | IP        |
+| ------- | ---- | --------- |
+| TCP     | 22   | your IP   |
+| TCP     | 8000 | 0.0.0.0/0 |
+| TCP     | 554  | 0.0.0.0/0 |
+| TCP     | 8089 | 0.0.0.0/0 |
+| TCP     | 9997 | 0.0.0.0/0 |
+| TCP     | 443  | 0.0.0.0/0 |
+| TCP     | 8088 | 0.0.0.0/0 |
+
+![](../images/1.10.jpg)
+4. wait Splunk Splunk Status is "running"
+![](../images/1.11.jpg)
+5. Now You can use the browser to open Splunk
+![](../images/1.12.jpg)
+6. Reset Splunk default password
+First, connect to Splunk Instance by "SSH" or "Putty"
+```bash
+ssh ec2-user@<splunk-instance-ip> -i keypair.pem
+```
+![](../images/1.13.jpg)
+Then run:
+```bash
+sudo su
+cd /opt/splunk/etc
+mv passwd passwd.old
+cd /opt/splunk/etc/system/local
+vim user-seed.conf
+```
+user-seed.conf:
+```
+[user_info]
+USERNAME = admin
+PASSWORD = password
+```
+Restart Splunk service
+```bash
+/opt/splunk/bin/splunk restart
+```
+7. Now You can login to splunk by New password
+![](../images/1.18.jpg)
