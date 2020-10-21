@@ -36,7 +36,7 @@
 * DB instance type : db.t2.small
 * Multi-AZ deployment : Don't create an Aurora Replica
 ![](../images/2.15.jpg)  
-Additional configuration
+* Additional configuration
 * DB cluster parameter group : `your parameter group name`
 ![](../images/2.16.jpg)  
 Click "Create database"
