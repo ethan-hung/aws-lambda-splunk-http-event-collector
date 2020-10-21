@@ -1,40 +1,28 @@
-# Amazon API Gateway
-1. AWS console -> Services -> API Gateway
-2. Click "Create API"
-3. Choose the protocol "REST"
-4. Choose "New API"
-5. Input API name "aws-serverless-workshop"
-6. Input Description "aws-serverless-workshop"
-7. Choose Endpoint Type "Regional"
-8. Click "Create API"
-![](../images/04-01.jpg)
-9. Click "Actions"
-10. Click "Create Resource"
-11. Input Resource Name "demo-api"
-12. Input Resource Path "demo-api"
-13. Click "Create resource"
-![](../images/04-02.jpg)
-14. Click "/demo-api"
-15. Click "Actions"
-16. Click "Create Method"
-17. Choose "GET"
-![](../images/04-03.jpg)
-18. Input Lambda Function Name "aws-serverless-workshop-get"
-![](../images/04-04.jpg)
-19. Click "Save"
-20. Click "Actions"
-21. Click "Deploy API"
-22. Choose Deployment stage "[New Stage]"
-23. Input Stage name "stage"
-24. Click "Deploy"
-![](../images/04-05.jpg)
-25. You can get the Invoke URL:[URL](https://pj8ep90b5m.execute-api.us-west-2.amazonaws.com/stage/demo-api)
-![](../images/04-06.jpg)
-26. Now, you can try to GET the API by Postman
-![](../images/04-07.jpg)
-27. Create another Method "POST" and Lambda Function "aws-serverless-workshop-post"
-28. Click "Actions"
-29. Click "Deploy API"
-30. Click "Deploy"
-31. You can try to POST the API by Postman
-![](../images/04-08.jpg)
+# Launch Splunk Instance On AWS
+1. Enter Lambda Console  and Click "Create function"  
+![](../images/4.2.jpg)  
+2. Choose "Use a blueprint"  
+![](../images/4.3.jpg)  
+3. Type `splunk` in the search box and choose "splunk-cloudwatch-logs-processor"  
+![](../images/4.4.jpg)  
+4. Lambda - Basic information  
+* Function name : `your lambda name`  
+* Execution role : Create a new role with basic Lambda permissions   
+![](../images/4.5.jpg)  
+5. Lambda - Cloudwatch Logs trigger  
+* Log group : `your cloudwatch logs name`  
+* Filter name : `your filter name`  
+![](../images/4.6.jpg)  
+6. Lambda - Environment variables  
+* SPLUNK_HEC_URL : http://`splunk-ip`:8088/services/collector  
+* SPLUNK_HEC_TOKEN : `splunk-http-hec-token`  
+![](../images/4.7.jpg)  
+7. Create function  
+![](../images/4.8.jpg)  
+8. Choose "Designer->CloudWatch Logs" and enable Cloudwatch Logs trigger  
+![](../images/4.9.jpg)  
+![](../images/4.10.jpg)  
+9. Now you can watch Lambda logs and metrics and Splunk  
+![](../images/4.11.jpg)  
+![](../images/4.12.jpg)  
+![](../images/4.13.jpg)  
