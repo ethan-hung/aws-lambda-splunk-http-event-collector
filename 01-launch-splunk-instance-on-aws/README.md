@@ -7,13 +7,11 @@
 * Subnet : Public Subnet
 * Storage : 20GB(GP2)
 * Security Group : 
-| TCP/UDP | Port Num | IP |
-| ------- | -------- | ----- |
-| TCP     | 22       | your IP   |
-| TCP     | 554      | 0.0.0.0/0 |
 
 
->> TCP 22 : Your IP
+
+>> 
+TCP 22 : Your IP
 TCP 8000 : 0.0.0.0/0
 TCP 554 : 0.0.0.0/0
 TCP 8089 : 0.0.0.0/0
