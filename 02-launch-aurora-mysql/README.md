@@ -6,7 +6,7 @@
 3. Choose Parameter group detail
 * Parameter group family : aurora-mysql5.7
 * Type : DB Cluster Parameter Group
-* Group name : <your group name>
+* Group name : 'your group name'
 ![](../images/2.4.jpg)
 
 
