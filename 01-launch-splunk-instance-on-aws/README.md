@@ -24,10 +24,12 @@
 5. Now You can use the browser to open Splunk
 ![](../images/1.12.jpg)
 6. Reset Splunk default password
+First, connect to Splunk Instance by "SSH" or "Putty"
 ```bash
 ssh ec2-user@<splunk-instance-ip> -i keypair.pem
 ```
 ![](../images/1.13.jpg)
+Then run:
 ```bash
 sudo su
 cd /opt/splunk/etc
@@ -35,11 +37,15 @@ mv passwd passwd.old
 cd /opt/splunk/etc/system/local
 vim user-seed.conf
 ```
+user-seed.conf:
 ```
 [user_info]
 USERNAME = admin
 PASSWORD = password
 ```
-```
+Restart Splunk service
+```bash
 /opt/splunk/bin/splunk restart
 ```
+7. Now You can login to splunk by New password
+![](../images/1.18.jpg)
