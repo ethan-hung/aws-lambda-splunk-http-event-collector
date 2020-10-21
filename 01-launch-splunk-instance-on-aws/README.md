@@ -19,7 +19,7 @@
 | TCP     | 8088 | 0.0.0.0/0 |
 
 ![](../images/1.10.jpg)  
-1. wait Splunk Splunk Status is "running"  
+4. wait Splunk Splunk Status is "running"  
 ![](../images/1.11.jpg)  
 5. Now You can use the browser to open Splunk  
 ![](../images/1.12.jpg)  
