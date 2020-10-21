@@ -1,6 +1,6 @@
 # Launch Splunk Instance On AWS
 1. Login AWS Console & Enter EC2 Console
-2. Click "Launch Instance" and Type "splunk" in the search box and Choose "Splunk Enterprise" in "AWS Marketplace"
+2. Click "Launch Instance" and Type `splunk` in the search box and Choose "Splunk Enterprise" in "AWS Marketplace"
 ![](../images/1.4.jpg)
 3. Splunk EC2 Instance Detail Setting
 * Instance type : t2.micro
