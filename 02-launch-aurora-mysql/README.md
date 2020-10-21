@@ -9,19 +9,19 @@
 * Group name : `your group name`
 ![](../images/2.4.jpg)
 4. Click New Parameter group and change parameters
-* slow_query_log = 1
+* slow_query_log = 1  
 ![](../images/2.5.jpg)
-* general_log = 1
+* general_log = 1  
 ![](../images/2.6.jpg)
-* long_query_time = 0.1 (100ms)
+* long_query_time = 0.1 (100ms)  
 ![](../images/2.7.jpg)
-* log_queries_not_using_indexes = 1
+* log_queries_not_using_indexes = 1  
 ![](../images/2.8.jpg)
-* log_output = FILE
+* log_output = FILE  
 ![](../images/2.9.jpg)
-* server_audit_logging = 1
+* server_audit_logging = 1  
 ![](../images/2.10.jpg)
-* server_audit_events = CONNECT,QUERY,QUERY_DCL,QUERY_DDL,QUERY_DML,TABLE
+* server_audit_events = CONNECT,QUERY,QUERY_DCL,QUERY_DDL,QUERY_DML,TABLE  
 ![](../images/2.11.jpg)
 5. Click "Databases" and Click "Create database"
 ![](../images/2.12.jpg)
