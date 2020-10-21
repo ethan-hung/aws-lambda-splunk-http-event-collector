@@ -1,27 +1,68 @@
-# AWS Lambda
-1. AWS console -> Services -> Lambda
-2. Click "Create function"
-3. Input Function Name "aws-serverless-workshop-get"
-4. Choose Runtime "Python 3.7"
-5. Choose Execution role "Use an existing role"
-6. Choose Existing role "aws-lambda-service-role"
-7. Click "Create function"
-![](../images/03-01.jpg)
-8. Setting Lambda Environment
-   * Environment variables
-   * Tags
-   * Execution role
-   * Basic settings
-   * Network
-   * Debugging and handling
-   * Concurrency
-![](../images/03-02.jpg)
-9. Write your Code on Lambda
-10. Click "Save"
-11. Click "Test"
-12. Choose "Create new test event"
-13. Input Event name "demo"
-14. Click "Create"
-15. Click "Test"
-![](../images/03-03.jpg)
-16. Create another Lambda function name "aws-serverless-workshop-post"
+# Set Splunk HTTP event Collector
+1. Login Splunk and Click "Settings->Data inputs"
+![](../images/3.1.jpg)
+2. Click "HTTP Event Collector"
+![](../images/3.2.jpg)
+3. Click "Global Settings"
+![](../images/3.3.jpg)
+4. Edit Global Settings
+* All Tokens : Enabled
+* Enable SSL : false
+![](../images/3.4.jpg)
+
+
+
+
+
+
+
+1. Login AWS Console & Enter EC2 Console
+2. Click "Launch Instance" and Type `splunk` in the search box and Choose "Splunk Enterprise" in "AWS Marketplace"
+![](../images/1.4.jpg)
+3. Splunk EC2 Instance Detail Setting
+* Instance type : t2.micro
+* Subnet : Public Subnet
+* Storage : 20GB(GP2)
+* Security Group : 
+
+| TCP/UDP | Port | IP        |
+| ------- | ---- | --------- |
+| TCP     | 22   | your IP   |
+| TCP     | 8000 | 0.0.0.0/0 |
+| TCP     | 554  | 0.0.0.0/0 |
+| TCP     | 8089 | 0.0.0.0/0 |
+| TCP     | 9997 | 0.0.0.0/0 |
+| TCP     | 443  | 0.0.0.0/0 |
+| TCP     | 8088 | 0.0.0.0/0 |
+
+![](../images/1.10.jpg)
+4. wait Splunk Splunk Status is "running"
+![](../images/1.11.jpg)
+5. Now You can use the browser to open Splunk
+![](../images/1.12.jpg)
+6. Reset Splunk default password
+First, connect to Splunk Instance by "SSH" or "Putty"
+```bash
+ssh ec2-user@<splunk-instance-ip> -i keypair.pem
+```
+![](../images/1.13.jpg)
+Then run:
+```bash
+sudo su
+cd /opt/splunk/etc
+mv passwd passwd.old
+cd /opt/splunk/etc/system/local
+vim user-seed.conf
+```
+user-seed.conf:
+```
+[user_info]
+USERNAME = admin
+PASSWORD = password
+```
+Restart Splunk service
+```bash
+/opt/splunk/bin/splunk restart
+```
+7. Now You can login to splunk by New password
+![](../images/1.18.jpg)
