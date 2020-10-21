@@ -35,10 +35,10 @@
 * DB instance class : Burstable classes (includes t classes)
 * DB instance type : db.t2.small
 * Multi-AZ deployment : Don't create an Aurora Replica
-![](../images/2.15.jpg)
+![](../images/2.15.jpg)  
 Additional configuration
 * DB cluster parameter group : `your parameter group name`
-![](../images/2.16.jpg)
+![](../images/2.16.jpg)  
 Click "Create database"
 7. Wait for the database status to be available
 ![](../images/2.17.jpg)
