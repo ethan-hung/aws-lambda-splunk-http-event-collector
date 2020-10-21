@@ -6,7 +6,8 @@
 * Instance type : t2.micro  
 * Subnet : Public Subnet  
 * Storage : 20GB(GP2)  
-* Security Group :   
+* Security Group : 
+
 | TCP/UDP | Port | IP        |
 | ------- | ---- | --------- |
 | TCP     | 22   | your IP   |
@@ -16,8 +17,9 @@
 | TCP     | 9997 | 0.0.0.0/0 |
 | TCP     | 443  | 0.0.0.0/0 |
 | TCP     | 8088 | 0.0.0.0/0 |
+
 ![](../images/1.10.jpg)  
-4. wait Splunk Splunk Status is "running"  
+1. wait Splunk Splunk Status is "running"  
 ![](../images/1.11.jpg)  
 5. Now You can use the browser to open Splunk  
 ![](../images/1.12.jpg)  
