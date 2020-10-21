@@ -39,6 +39,8 @@
 * Additional configuration  
 * DB cluster parameter group : `your parameter group name`  
 ![](../images/2.16.jpg)  
+* Log Exports : Audit log, Error log, General log, Slow query log  
+![](../images/2.20.jpg)  
 Click "Create database"  
 7. Wait for the database status to be available  
 ![](../images/2.17.jpg)  
