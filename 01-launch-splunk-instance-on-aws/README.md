@@ -7,17 +7,13 @@
 * Subnet : Public Subnet
 * Storage : 20GB(GP2)
 * Security Group : 
-
-
-
->> 
-TCP 22 : Your IP
-TCP 8000 : 0.0.0.0/0
-TCP 554 : 0.0.0.0/0
-TCP 8089 : 0.0.0.0/0
-TCP 9997 : 0.0.0.0/0
-TCP 443 : 0.0.0.0/0
-TCP 8088 : 0.0.0.0/0
+> TCP 22 : Your IP
+> TCP 8000 : 0.0.0.0/0
+> TCP 554 : 0.0.0.0/0
+> TCP 8089 : 0.0.0.0/0
+> TCP 9997 : 0.0.0.0/0
+> TCP 443 : 0.0.0.0/0
+> TCP 8088 : 0.0.0.0/0
 ![](../images/1.10.jpg)
 4. wait Splunk Splunk Status is "running"
 ![](../images/1.11.jpg)
