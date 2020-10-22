@@ -32,7 +32,6 @@
 | QUERY_DML | 類似於 QUERY 事件，但只傳回資料操作語言 (DML) 查詢 (INSERT、UPDATE 和 SELECT 等) |
 | TABLE     | 記錄因為執行查詢而受影響的資料表                                                 |
 
-
 ![](../images/2.11.jpg)  
 1. Click "Databases" and Click "Create database"  
 ![](../images/2.12.jpg)  
