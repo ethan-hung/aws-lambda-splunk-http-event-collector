@@ -1,0 +1,72 @@
+1. 建立Splunk on AWS
+
+sudo su
+cd /opt/splunk/etc
+mv passwd passwd.old
+cd /opt/splunk/etc/system/local
+vim user-seed.conf
+```
+[user_info]
+USERNAME = admin
+PASSWORD = password
+```
+/opt/splunk/bin/splunk restart
+
+
+2. 建立Aurora
+
+PoC測試環境
+Aurora 規格
+1.	Aurora MySQL 5.7 2.09.0
+2.	Db.t2.small
+3.	20 GB GP2
+Aurora Parameter Group
+1.	Family : aurora-mysql5.7
+2.	Type : DB cluster parameter group
+Aurora Parameter Group Setting
+1.	slow_query_log = 1
+2.	general_log = 1
+3.	long_query_time = 0.1 (100ms)
+4.	log_queries_not_using_indexes = 1
+5.	log_output = FILE
+6.	server_audit_logging = 1
+7.	server_audit_events = CONNECT,QUERY,QUERY_DCL,QUERY_DDL,QUERY_DML,TABLE
+
+
+Engine Type:Aurora
+Edition:Amazon Aurora with MySQL compatibility
+Capacity Type:Provisioned
+Version:Aurora (MySQL 5.7) 2.09.0
+Template:Dev/Test
+DB instance class:Burstable classes(includes t classes)
+DB instance size:db.t2.small
+Multi-AZ deployment:Don't create an Aurora Replica
+VPC:
+Database authentication:Password authentication
+Additional Configuration
+DB Cluster Parameter group: aurora-mysql-parameter-group
+Log Exports:Audit log, Error log, General log, Slow query log
+
+
+3. 設定Splunk HTTP event Collector
+
+Curl Testing
+
+CMD
+```
+curl -k  http://splunk-host:8088/services/collector -H "Authorization:Splunk token" -d "{\"sourcetype\":  \"trial\",\"event\":\"hello world!\"}"
+
+For Example
+curl -k  http://13.113.194.6:8088/services/collector -H "Authorization:Splunk 572a98bb-36f9-4240-9774-b9743cd4467a" -d "{\"sourcetype\":  \"trial\",\"event\":\"hello world!\"}"
+```
+
+
+4. Cloudwatch Logs觸發Lambda拋送資料到Splunk
+
+splunk-cloudwatch-logs-processor
+SPLUNK_HEC_URL = http://13.113.194.6:8088/services/collector
+SPLUNK_HEC_TOKEN = 572a98bb-36f9-4240-9774-b9743cd4467a
+
+5. 
+audit_log
+1603334356245479,database-1-instance-1,admin,60.250.137.11,13,431622,QUERY,,'show variables',0
