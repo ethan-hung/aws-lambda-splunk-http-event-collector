@@ -12,13 +12,23 @@ In Parameter Group [Link](https://docs.aws.amazon.com/zh_tw/AmazonRDS/latest/Aur
 | db.r5.xlarge   | 2000                          |
 | db.r5.2xlarge  | 3000                          |
 
-2. Connection fail
+2. Connection Success
+- Gerenal Log
+```
+2020-10-23T08:36:48.508034Z   50 Connect	admin@1.34.6.81 on  using SSL/TLS
+```
+- Audit Log
+```
+1603442208508100,database-1-instance-1,admin,1.34.6.81,50,0,CONNECT,,,0
+```
+
+3. Connection fail
 - Audit Log
 ```
 2020-10-23T07:13:26.298081Z 34 [Note] Access denied for user 'admin'@'58.182.98.237' (using password: YES)
 ```
 
-3. Create database
+4. Create database
 - SQL
 ```sql
 create database mysqldemo;
@@ -32,7 +42,7 @@ create database mysqldemo;
 2020-10-23T07:38:56.637123Z 30 Query create database mysqldemo
 ```
 
-4. Create Table
+5. Create Table
 - SQL
 ```sql
 CREATE TABLE customers (
@@ -59,7 +69,35 @@ CREATE TABLE customers (
 1603439251360772,database-1-instance-1,admin,1.34.6.81,30,966941,QUERY,world,'CREATE TABLE customers (   C_Id INT,   Name varchar(50),   Address varchar(255),   Phone varchar(20) )',0
 ```
 
-5. Insert Table
+6. Alter Table
+- SQL
+```sql
+ALTER TABLE customers ADD Discount VARCHAR(10);
+```
+- General Log
+```
+2020-10-23T08:42:46.477013Z   50 Query	ALTER TABLE customers ADD Discount VARCHAR(10)
+```
+- Audit Log
+```
+1603442566556527,database-1-instance-1,admin,1.34.6.81,50,984383,QUERY,mysqldemo,'ALTER TABLE customers ADD Discount VARCHAR(10)',0
+```
+
+7. Drop Table
+- SQL
+```sql
+DROP TABLE customers;
+```
+- General Log
+```
+2020-10-23T08:44:22.845107Z   50 Query	DROP TABLE customers
+```
+- Audit Log
+```
+1603442662867983,database-1-instance-1,admin,1.34.6.81,50,984868,QUERY,mysqldemo,'DROP TABLE customers',0
+```
+
+8. Insert Table
 - SQL
 ```sql
 INSERT INTO customers (C_Id, Name, Address, Phone)
@@ -76,7 +114,7 @@ VALUES (3, 'ethan', 'abcd street', '07-12345678')
 1603440571474649,database-1-instance-1,admin,1.34.6.81,30,973788,QUERY,mysqldemo,'INSERT INTO customers (C_Id, Name, Address, Phone) VALUES (3, \'ethan\', \'abcd street\', \'07-12345678\')',0
 ```
 
-6. Update Table
+9. Update Table
 - SQL
 ```sql
 UPDATE customers SET Phone = '0912345678' WHERE C_Id = 3;
@@ -90,7 +128,7 @@ UPDATE customers SET Phone = '0912345678' WHERE C_Id = 3;
 1603441198899209,database-1-instance-1,admin,1.34.6.81,30,977018,QUERY,mysqldemo,'UPDATE customers SET Phone = \'0912345678\' WHERE C_Id = 3',0
 ```
 
-7. Delete Table
+10. Delete Table
 - SQL
 ```sql
 DELETE FROM customers WHERE Name='ethan';
@@ -104,7 +142,8 @@ DELETE FROM customers WHERE Name='ethan';
 1603441431296080,database-1-instance-1,admin,1.34.6.81,30,978195,QUERY,mysqldemo,'DELETE FROM customers WHERE Name=\'ethan\'',0
 ```
 
-8. Create USER
+11. Create USER
+- SQL
 ```sql
 CREATE USER 'ethan'@'%' IDENTIFIED WITH 'mysql_native_password' AS '<secret>'
 ```
@@ -117,7 +156,8 @@ CREATE USER 'ethan'@'%' IDENTIFIED WITH 'mysql_native_password' AS '<secret>'
 1603441586611643,database-1-instance-1,admin,1.34.6.81,45,979048,QUERY,mysql,'CREATE USER \'ethan\'@\'%\' IDENTIFIED WITH \'mysql_native_password\' AS \'*F846B31F10DD4389C384272E70B9BBA3AD9E1F94\'',0
 ```
 
-9. Alter USER
+12. Alter USER
+- SQL
 ```sql
 ALTER USER 'ethan'@'%' IDENTIFIED WITH 'mysql_native_password' AS '<secret>'
 ```
@@ -130,7 +170,8 @@ ALTER USER 'ethan'@'%' IDENTIFIED WITH 'mysql_native_password' AS '<secret>'
 1603441657347720,database-1-instance-1,admin,1.34.6.81,47,979491,QUERY,mysql,'ALTER USER \'ethan\'@\'%\' IDENTIFIED WITH \'mysql_native_password\' AS \'*F846B31F10DD4389C384272E70B9BBA3AD9E1F94\'',0
 ```
 
-10. Grant USER
+13. Grant USER
+- SQL
 ```sql
 GRANT DROP, EXECUTE, CREATE ROUTINE, CREATE USER, CREATE, SHOW DATABASES, RELOAD, ALTER, DELETE, ALTER ROUTINE, INSERT, INDEX, CREATE TEMPORARY TABLES, CREATE VIEW, EVENT, SELECT, SHOW VIEW, UPDATE, LOCK TABLES, PROCESS, TRIGGER ON *.* TO 'ethan'@'%' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0
 ```
@@ -141,4 +182,47 @@ GRANT DROP, EXECUTE, CREATE ROUTINE, CREATE USER, CREATE, SHOW DATABASES, RELOAD
 - Audit Log
 ```
 1603441717744113,database-1-instance-1,admin,1.34.6.81,47,979851,QUERY,mysql,'GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, RELOAD, PROCESS, INDEX, ALTER, SHOW DATABASES, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, CREATE USER, EVENT, TRIGGER ON *.* TO \'ethan\'@\'%\' WITH MAX_QUERIES_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_USER_CONNECTIONS 0',0
+```
+
+14. Drop USER
+- SQL
+```sql
+DROP USER 'ethan'@'%'
+```
+- General Log
+```
+2020-10-23T08:34:08.216920Z   47 Query	DROP USER 'ethan'@'%'
+```
+- Audit Log
+```
+1603442048227886,database-1-instance-1,admin,1.34.6.81,47,981659,QUERY,mysql,'DROP USER \'ethan\'@\'%\'',0
+```
+
+15. Slow QUERY
+- SQL
+```sql
+SELECT * FROM mysqldemo.customers WHERE Address='abcd street'
+```
+- Slow Query Log
+```
+# Time: 2020-10-23T08:46:32.817274Z
+# User@Host: admin[admin] @  [1.34.6.81]  Id:    50
+# Query_time: 0.000299  Lock_time: 0.000144 Rows_sent: 1  Rows_examined: 1
+SET timestamp=1603442792;
+SELECT * FROM mysqldemo.customers WHERE Address='abcd street'
+LIMIT 0, 1000;
+```
+
+16. ALTER SYSTEM CRASH
+- SQL
+```sql
+2020-10-23T08:53:58.167384Z    6 Query	ALTER SYSTEM CRASH NODE
+```
+- General Log
+```
+2020-10-23T08:53:58.167384Z    6 Query	ALTER SYSTEM CRASH NODE
+```
+- Error Log
+```
+2020-10-23T08:53:58.167728Z 6 [Note] Forcing a crash of type 2
 ```
