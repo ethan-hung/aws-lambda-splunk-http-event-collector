@@ -226,3 +226,4 @@ ALTER SYSTEM CRASH NODE
 ```
 2020-10-23T08:53:58.167728Z 6 [Note] Forcing a crash of type 2
 ```
+[LINK](https://dev.classmethod.jp/articles/recovery-test-aurora/)
